@@ -11,6 +11,11 @@ describe('Account', () => {
     AccountPage.fillEmail(email)
       .fillPassword('QJVNydt0@5*%3Cfv')
       .submit()
+    cy.on('window:alert',(str)=>
+      {
+          //Assert to check when user is created successful
+          expect(str).to.equal('Sign up successful.')
+      })
   })
 
   it('should display an error with already existing credentials', () => {
@@ -20,7 +25,7 @@ describe('Account', () => {
       .submit()
     cy.on('window:alert',(str)=>
       {
-          //Mocha
+          //Assert to check message displayed when user already exist
           expect(str).to.equal('This user already exist.')
       })
 
